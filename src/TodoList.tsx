@@ -3,21 +3,32 @@ import React from "react";
 
 type TodoListPropsType={ 
 
-   topic:string
+   topic1?:string
+   arr:Array<inArrayPropsType>
+}
+
+type inArrayPropsType={
+    id:number
+    title:string
+    isDone:boolean
 }
 
  export const TodoList =(props:TodoListPropsType)=> {
     return (
             <div className='TodoList'>
-                <h3>{props.topic}</h3>
+            <h3>{props.topic1}</h3>
                 <div>
                     <input/>
                     <button>+</button>
                 </div>
                 <ul>
-                    <li><input type="checkbox" checked={true}/> <span>HTML&CSS</span></li>
-                    <li><input type="checkbox" checked={true}/> <span>JS</span></li>
-                    <li><input type="checkbox" checked={false}/> <span>React</span></li>
+                 {props.arr.map((el:inArrayPropsType)=>{
+                     return(
+                       <li> <input type="checkbox" checked={el.isDone}/> <span>{el.title}</span></li>
+                     )
+                 })}
+
+                 
                 </ul>
                 <div>
                     <button>All</button>
